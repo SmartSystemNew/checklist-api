@@ -1,0 +1,34 @@
+import dayjs from 'dayjs'
+import IUseCase from '@/models/IUseCase'
+import IGetCheckListLimitTimeRequestDTO from './IGetCheckListByLimitTimeRequestDTO'
+import IProductionRegisterRepository from '@/repositories/IProductionRegisterRepository'
+import IGetCheckListByLimitTimeResponseDTO from './IGetCheckListByLimitTimeResponseDTO'
+
+export default class GetCheckListByLimitTimeUseCase implements IUseCase {
+  constructor(
+    private productionRegisterRepository: IProductionRegisterRepository,
+  ) {}
+
+  async execute(data: IGetCheckListLimitTimeRequestDTO) {
+    const dateStatic = dayjs('2022-02-01')
+    const register = await this.productionRegisterRepository.listRegisterByTime(
+      dateStatic.toDate(),
+      data.user.branchBound.map((item) => item.branch.ID),
+    )
+
+    const response: IGetCheckListByLimitTimeResponseDTO[] = register.map(
+      (item) => {
+        return {
+          id: item.id,
+          date: dayjs(item.DATA).format('DD/MM/YYYY'),
+          period: item.turno || '',
+          code: item.equipment?.equipamento_codigo || '',
+          description: item.equipment?.descricao || '',
+          status: item.status ? 'open' : 'close',
+        }
+      },
+    )
+
+    return response
+  }
+}

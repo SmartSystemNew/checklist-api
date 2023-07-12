@@ -1,0 +1,14 @@
+{
+	"createMainRoute": {
+		"prefix": "createMainRoute",
+		"body": [
+			"import { FastifyInstance } from 'fastify'",
+      "",
+      "export default async function mainRoute(mainRoute: FastifyInstance) {",
+      "",
+      "}"
+		],
+		"description": "Create an example controller",
+		"scope": "typescript"
+	}
+}

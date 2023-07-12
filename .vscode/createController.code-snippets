@@ -1,0 +1,24 @@
+{
+	"createController": {
+		"prefix": "createController",
+		"body": [
+			"import { FastifyRequest, FastifyReply } from 'fastify'",
+      "import IController from '../../../models/IController'",
+      "import IUseCase from '../../../models/IUseCase'",
+      "",
+      "export default class MyController implements IController {",
+      "  constructor(private useCase: IUseCase) {",
+      "    this.handle = this.handle.bind(this)",
+      "  }",
+      "",
+      "  async handle(req: FastifyRequest, res: FastifyReply) {",
+      "    const response = await this.useCase.execute({})",
+      "",
+      "    res.status(200).send(response)",
+      "  }",
+      "}"
+		],
+		"description": "Create an example controller",
+		"scope": "typescript"
+	}
+}
