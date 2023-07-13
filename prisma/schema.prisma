@@ -931,6 +931,7 @@ model cadastro_de_empresas {
   smartnewsystem_compras_solicitacao                                             smartnewsystem_compras_solicitacao[]
   smartnewsystem_compras_rodape                                                  smartnewsystem_compras_rodape[]
   smartnewsystem_financeiro_meta                                                 smartnewsystem_financeiro_meta[]
+  smartnewsystem_registro_turno                                                  smartnewsystem_registro_turno[]
 
   @@index([id_filial_padrao], map: "fk_empresa_filial")
   @@index([razao_social, nome_fantasia], map: "indexRazaoFantasia")
@@ -3581,6 +3582,14 @@ model smartnewsystem_registro_producaov2 {
   @@index([id_material], map: "fk_registro_prodv2_material")
   @@index([id_motorista], map: "fk_registro_prodv2_motorista")
   @@index([id_origem], map: "fk_registro_prodv2_origem")
+}
+
+model smartnewsystem_registro_turno {
+  id         Int    @id @default(autoincrement())
+  id_cliente Int
+  turno      String
+
+  company cadastro_de_empresas @relation(fields: [id_cliente], references: [ID])
 }
 
 model smartnewsystem_reponsaveis_cotacao {

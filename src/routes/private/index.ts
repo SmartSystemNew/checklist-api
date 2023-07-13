@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify'
 import authRoutes from './auth'
 import verifyJWT from '@/middleware/verifyJWT'
 import checkListRoutes from './checkList'
+import periodRoutes from './period'
 
 export default async function privateRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
@@ -11,5 +12,8 @@ export default async function privateRoutes(app: FastifyInstance) {
   })
   app.register(checkListRoutes, {
     prefix: '/checkList',
+  })
+  app.register(periodRoutes, {
+    prefix: '/period',
   })
 }
