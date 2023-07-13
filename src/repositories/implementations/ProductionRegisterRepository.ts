@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { IListRegisterByTime } from '@/models/IProductionRegister'
 import IProductionRegisterRepository from '../IProductionRegisterRepository'
+import { Decimal } from '@prisma/client/runtime'
 
 export default class ProductionRegisterRepository
   implements IProductionRegisterRepository
@@ -37,5 +38,23 @@ export default class ProductionRegisterRepository
     })
 
     return register
+  }
+
+  async findLastMileageByEquipment(
+    equipmentId: number,
+  ): Promise<number | Decimal> {
+    const mileage = await this.table.findFirst({
+      select: {
+        quilometragem_final: true,
+      },
+      where: {
+        id_equipamento: equipmentId,
+      },
+      orderBy: {
+        id: 'desc',
+      },
+    })
+
+    return mileage?.quilometragem_final || 0
   }
 }

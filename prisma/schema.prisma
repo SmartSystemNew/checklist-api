@@ -3376,7 +3376,7 @@ model smartnewsystem_registro_producao {
   cadastro_de_centros_de_custo                       cadastro_de_centros_de_custo?                        @relation(fields: [id_centro_custo], references: [ID], onDelete: Restrict, map: "fk_registro_producao_filial")
   sec_users                                          sec_users?                                           @relation(fields: [login], references: [login], onDelete: Restrict, map: "fk_registro_producao_login")
   smartnewsystem_registro_producao_aprovacao         smartnewsystem_registro_producao_aprovacao[]
-  smartnewsystem_registro_producao_dados             smartnewsystem_registro_producao_dados[]
+  productionRegisterData                             smartnewsystem_registro_producao_dados[]
   smartnewsystem_registro_producao_dados_ocorrencias smartnewsystem_registro_producao_dados_ocorrencias[]
   sofman_tarefas_ordem_servico                       sofman_tarefas_ordem_servico[]
 
@@ -3450,7 +3450,7 @@ model smartnewsystem_registro_producao_dados {
   smartnewsystem_registro_producao_destino           smartnewsystem_registro_producao_destino?            @relation(fields: [id_destino], references: [id], onDelete: Restrict, map: "fk_registro_producao_dados_destino")
   smartnewsystem_registro_producao_origem            smartnewsystem_registro_producao_origem?             @relation(fields: [id_origem], references: [id], onDelete: Restrict, map: "fk_registro_producao_dados_origem")
   smartnewsystem_subtarefa                           smartnewsystem_subtarefa?                            @relation(fields: [id_subtarefa], references: [id], onDelete: Restrict, map: "fk_registro_producao_dados_subtarefa")
-  smartnewsystem_registro_producao                   smartnewsystem_registro_producao?                    @relation(fields: [id_registro_producao], references: [id], onDelete: Cascade, map: "fk_resgistro_producao_dados_reg")
+  productionRegister                                 smartnewsystem_registro_producao?                    @relation(fields: [id_registro_producao], references: [id], onDelete: Cascade, map: "fk_resgistro_producao_dados_reg")
   sec_users                                          sec_users?                                           @relation(fields: [login], references: [login], onDelete: Restrict, map: "fk_smartnewsystem_registro_producao_dados_login")
   smartnewsystem_registro_producao_dados_ocorrencias smartnewsystem_registro_producao_dados_ocorrencias[]
 
