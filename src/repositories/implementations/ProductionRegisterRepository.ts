@@ -44,19 +44,15 @@ export default class ProductionRegisterRepository
   async findLastMileageByEquipment(
     equipmentId: number,
   ): Promise<number | Decimal> {
-    const mileage = await this.table.findFirst({
-      select: {
+    const mileage = await this.table.aggregate({
+      _max: {
         quilometragem_final: true,
       },
       where: {
         id_equipamento: equipmentId,
       },
-      orderBy: {
-        id: 'desc',
-      },
     })
-
-    return mileage?.quilometragem_final || 0
+    return mileage._max.quilometragem_final || 0
   }
 
   async save(

@@ -24,5 +24,21 @@ export default class PostCheckListUseCase implements IUseCase {
     if (!period) {
       throw CustomError.notFound('Período não encontrado!')
     }
+
+    const productionRegister = await this.productionRegisterRepository.save({
+      id_centro_custo: Number(equipment.centro_custo) || 0,
+      id_equipamento: equipment.ID,
+      id_turno: period.id,
+      quilometragem: data.mileage,
+      login: data.user.login,
+      DATA: data.initialTime,
+      data_hora_inicio: data.initialTime,
+      // turno: period.turno || 'Turno_1',
+      idlog: 0,
+    })
+
+    return {
+      id: productionRegister.id,
+    }
   }
 }
