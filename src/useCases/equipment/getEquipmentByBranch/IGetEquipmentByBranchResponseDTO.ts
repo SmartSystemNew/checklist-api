@@ -1,3 +1,5 @@
+import { Decimal } from '@prisma/client/runtime'
+
 export default interface IGetEquipmentByBranchResponseDTO {
   id: number
   description: string
@@ -5,4 +7,5 @@ export default interface IGetEquipmentByBranchResponseDTO {
   costCenter: number
   branchId: number
   clientId: number
+  mileage: number | Decimal
 }

@@ -49,6 +49,38 @@ export default class ProductionRegisterRepository
     return register
   }
 
+  async listRegisterByBranch(branch: number[]): Promise<IListRegisterByTime[]> {
+    const register = await this.table.findMany({
+      select: {
+        id: true,
+        DATA: true,
+        turno: true,
+        status: true,
+        id_turno: true,
+        equipment: {
+          select: {
+            ID: true,
+            equipamento_codigo: true,
+            descricao: true,
+          },
+        },
+        quilometragem: true,
+        quilometragem_final: true,
+        data_hora_inicio: true,
+        login: true,
+      },
+      where: {
+        equipment: {
+          ID_filial: {
+            in: branch,
+          },
+        },
+      },
+    })
+
+    return register
+  }
+
   async findLastMileageByEquipment(
     equipmentId: number,
   ): Promise<number | Decimal> {
