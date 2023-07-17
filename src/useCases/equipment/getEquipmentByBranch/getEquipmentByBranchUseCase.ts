@@ -16,7 +16,7 @@ export default class GetEquipmentByBranchUseCase implements IUseCase {
           id: item.ID,
           code: item.equipamento_codigo || '',
           description: item.descricao || '',
-          costCenterId: item.id_centro_custo || 0,
+          costCenter: item.id_centro_custo || 0,
           clientId: item.ID_cliente || 0,
           branchId: item.ID_filial || 0,
         }
