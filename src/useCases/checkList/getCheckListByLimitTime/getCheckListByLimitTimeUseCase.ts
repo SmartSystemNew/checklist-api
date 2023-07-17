@@ -27,7 +27,7 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
           description: item.equipment?.descricao || '',
           status: item.status ? 'open' : 'close',
           equipmentId: item.equipment?.ID || 0,
-          mileage: item.quilometragem,
+          mileage: Number(item.quilometragem),
           finalMileage: item.quilometragem_final,
           initialTime: item.data_hora_inicio,
           login: item.login || '',
