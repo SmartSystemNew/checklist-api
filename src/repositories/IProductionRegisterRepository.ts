@@ -1,4 +1,5 @@
 import { IListRegisterByTime } from '@/models/IProductionRegister'
+import { Prisma, smartnewsystem_registro_producao } from '@prisma/client'
 import { Decimal } from '@prisma/client/runtime'
 
 export default interface IProductionRegisterRepository {
@@ -8,4 +9,7 @@ export default interface IProductionRegisterRepository {
   ): Promise<IListRegisterByTime[]>
 
   findLastMileageByEquipment(equipmentId: number): Promise<number | Decimal>
+  save(
+    data: Prisma.smartnewsystem_registro_producaoUncheckedCreateInput,
+  ): Promise<smartnewsystem_registro_producao>
 }

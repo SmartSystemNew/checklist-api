@@ -1183,6 +1183,7 @@ model cadastro_de_filiais {
   descriptionForIssueReceive                                                                                              smartnewsystem_financeiro_descricao_titulos[] @relation(name: "descriptionForIssueReceive")
   smartnewsystem_financeiro_meta                                                                                          smartnewsystem_financeiro_meta[]
   smartnewsystem_compras_pre_financeiro                                                                                   smartnewsystem_compras_pre_financeiro[]
+  period                                                                                                                  smartnewsystem_registro_turno[]
 
   @@index([ID_cliente], map: "FK_cadastro_de_filiais_cadastro_de_empresas")
   @@index([ID], map: "ID")
@@ -3351,6 +3352,7 @@ model smartnewsystem_registro_producao {
   id                                                 Int                                                  @id @default(autoincrement())
   id_centro_custo                                    Int?
   id_equipamento                                     Int?
+  id_turno                                           Int?
   contador_inicial                                   Decimal?                                             @db.Decimal(10, 2)
   contador_final                                     Decimal?                                             @db.Decimal(10, 2)
   quilometragem                                      Decimal?                                             @db.Decimal(10, 2)
@@ -3379,6 +3381,7 @@ model smartnewsystem_registro_producao {
   productionRegisterData                             smartnewsystem_registro_producao_dados[]
   smartnewsystem_registro_producao_dados_ocorrencias smartnewsystem_registro_producao_dados_ocorrencias[]
   sofman_tarefas_ordem_servico                       sofman_tarefas_ordem_servico[]
+  period                                             smartnewsystem_registro_turno?                       @relation(fields: [id_turno], references: [id])
 
   @@unique([login, id_centro_custo, id_equipamento, DATA, turno], map: "login")
   @@index([id_equipamento], map: "fk_registro_producao_eqto")
@@ -3587,9 +3590,12 @@ model smartnewsystem_registro_producaov2 {
 model smartnewsystem_registro_turno {
   id         Int    @id @default(autoincrement())
   id_cliente Int
+  id_filial  Int
   turno      String
 
-  company cadastro_de_empresas @relation(fields: [id_cliente], references: [ID])
+  company            cadastro_de_empresas               @relation(fields: [id_cliente], references: [ID])
+  productionRegister smartnewsystem_registro_producao[]
+  branch             cadastro_de_filiais                @relation(fields: [id_filial], references: [ID])
 }
 
 model smartnewsystem_reponsaveis_cotacao {
