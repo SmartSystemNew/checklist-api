@@ -31,7 +31,7 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
           finalMileage: item.quilometragem_final || 0,
           initialTime: item.data_hora_inicio,
           login: item.login || '',
-          periodId: item.id_turno,
+          periodId: item.id_turno || 0,
         }
       },
     )
