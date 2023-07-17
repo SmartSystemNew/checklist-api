@@ -13,6 +13,8 @@ export default class GetPeriodUseCase implements IUseCase {
       return {
         id: item.id,
         period: item.turno,
+        clientId: item.id_cliente,
+        branchId: item.id_filial,
       }
     })
 

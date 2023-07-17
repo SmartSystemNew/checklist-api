@@ -26,7 +26,7 @@ export default class PostCheckListUseCase implements IUseCase {
     }
 
     const productionRegister = await this.productionRegisterRepository.save({
-      id_centro_custo: Number(equipment.centro_custo) || 0,
+      id_centro_custo: equipment.id_centro_custo || 0,
       id_equipamento: equipment.ID,
       id_turno: period.id,
       quilometragem: data.mileage,
