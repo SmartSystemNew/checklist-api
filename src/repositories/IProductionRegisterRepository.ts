@@ -6,6 +6,7 @@ export default interface IProductionRegisterRepository {
   listRegisterByTime(
     time: Date,
     branch: number[],
+    login: string,
   ): Promise<IListRegisterByTime[]>
 
   findLastMileageByEquipment(equipmentId: number): Promise<number | Decimal>

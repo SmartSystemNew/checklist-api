@@ -14,6 +14,7 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
     const register = await this.productionRegisterRepository.listRegisterByTime(
       dateStatic.toDate(),
       data.user.branchBound.map((item) => item.branch.ID),
+      data.user.login,
     )
 
     const response: IGetCheckListByLimitTimeResponseDTO[] = register.map(
@@ -25,6 +26,12 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
           code: item.equipment?.equipamento_codigo || '',
           description: item.equipment?.descricao || '',
           status: item.status ? 'open' : 'close',
+          equipmentId: item.equipment?.ID || 0,
+          mileage: item.quilometragem,
+          finalMileage: item.quilometragem_final,
+          initialTime: item.data_hora_inicio,
+          login: item.login || '',
+          periodId: item.id_turno,
         }
       },
     )

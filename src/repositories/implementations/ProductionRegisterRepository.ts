@@ -12,6 +12,7 @@ export default class ProductionRegisterRepository
   async listRegisterByTime(
     time: Date,
     branch: number[],
+    login: string,
   ): Promise<IListRegisterByTime[]> {
     const register = await this.table.findMany({
       select: {
@@ -19,12 +20,18 @@ export default class ProductionRegisterRepository
         DATA: true,
         turno: true,
         status: true,
+        id_turno: true,
         equipment: {
           select: {
+            ID: true,
             equipamento_codigo: true,
             descricao: true,
           },
         },
+        quilometragem: true,
+        quilometragem_final: true,
+        data_hora_inicio: true,
+        login: true,
       },
       where: {
         data_hora_inicio: {
@@ -35,6 +42,7 @@ export default class ProductionRegisterRepository
             in: branch,
           },
         },
+        login,
       },
     })
 

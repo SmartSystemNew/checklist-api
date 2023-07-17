@@ -1,3 +1,5 @@
+import { Decimal } from '@prisma/client/runtime'
+
 export default interface IGetCheckListByLimitTimeResponseDTO {
   id: number
   date: string
@@ -5,4 +7,10 @@ export default interface IGetCheckListByLimitTimeResponseDTO {
   status: 'open' | 'close'
   code: string
   description: string
+  equipmentId: number
+  mileage: number | Decimal | null
+  finalMileage: number | Decimal | null
+  initialTime: Date | null
+  login: string
+  periodId: number | null
 }
