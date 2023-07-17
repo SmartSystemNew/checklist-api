@@ -29,7 +29,9 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
           equipmentId: item.equipment?.ID || 0,
           mileage: Number(item.quilometragem),
           finalMileage: item.quilometragem_final || 0,
-          initialTime: item.data_hora_inicio,
+          initialTime: dayjs(item.data_hora_inicio).format(
+            'DD-MM-YYYY HH:mm:ss',
+          ),
           login: item.login || '',
           periodId: item.id_turno || 0,
         }

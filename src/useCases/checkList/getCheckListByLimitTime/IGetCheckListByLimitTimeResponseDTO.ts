@@ -10,7 +10,7 @@ export default interface IGetCheckListByLimitTimeResponseDTO {
   equipmentId: number
   mileage: number | Decimal | null
   finalMileage: number | Decimal | null
-  initialTime: Date | null
+  initialTime: string | Date | null
   login: string
   periodId: number | null
 }
