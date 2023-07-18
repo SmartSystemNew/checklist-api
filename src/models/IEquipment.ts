@@ -7,3 +7,7 @@ export interface IListByBranch {
   ID_familia: number | null
   id_centro_custo: number | null
 }
+
+export interface IListFamilyByBranch {
+  ID_familia: number | null
+}

@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import IEquipmentRepository from '../IEquipmentRepository'
-import { IListByBranch } from '@/models/IEquipment'
+import { IListByBranch, IListFamilyByBranch } from '@/models/IEquipment'
 import { cadastro_de_equipamentos } from '@prisma/client'
 
 export default class EquipmentRepository implements IEquipmentRepository {
@@ -31,5 +31,21 @@ export default class EquipmentRepository implements IEquipmentRepository {
         ID: id,
       },
     })
+  }
+
+  async listFamilyByBranch(branch: number[]): Promise<IListFamilyByBranch[]> {
+    const family = await this.table.findMany({
+      distinct: 'ID_familia',
+      select: {
+        ID_familia: true,
+      },
+      where: {
+        ID_filial: {
+          in: branch,
+        },
+      },
+    })
+
+    return family
   }
 }
