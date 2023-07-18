@@ -15,6 +15,7 @@ export default class EquipmentRepository implements IEquipmentRepository {
         ID_cliente: true,
         ID_filial: true,
         id_centro_custo: true,
+        ID_familia: true,
       },
       where: {
         ID_filial: {

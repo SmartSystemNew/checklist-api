@@ -8,4 +8,6 @@ export default interface IGetEquipmentByBranchResponseDTO {
   branchId: number
   clientId: number
   mileage: number | Decimal
+  familyId: number | Decimal
+  hourMeter: number | Decimal
 }

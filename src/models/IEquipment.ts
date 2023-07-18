@@ -4,5 +4,6 @@ export interface IListByBranch {
   descricao: string | null
   ID_cliente: number | null
   ID_filial: number | null
+  ID_familia: number | null
   id_centro_custo: number | null
 }
