@@ -8,7 +8,7 @@
       "",
       "}"
 		],
-		"description": "Create an example controller",
+		"description": "Create an example route in fastify",
 		"scope": "typescript"
 	}
 }

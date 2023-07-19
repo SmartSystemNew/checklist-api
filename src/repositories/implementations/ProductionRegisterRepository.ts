@@ -21,6 +21,9 @@ export default class ProductionRegisterRepository
         turno: true,
         status: true,
         id_turno: true,
+        id_centro_custo: true,
+        data_hora_encerramento: true,
+        data_log: true,
         equipment: {
           select: {
             ID: true,
@@ -57,6 +60,9 @@ export default class ProductionRegisterRepository
         turno: true,
         status: true,
         id_turno: true,
+        id_centro_custo: true,
+        data_hora_encerramento: true,
+        data_log: true,
         equipment: {
           select: {
             ID: true,

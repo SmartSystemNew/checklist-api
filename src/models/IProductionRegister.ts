@@ -7,6 +7,9 @@ export interface IListRegisterByTime {
   status: number
   turno: smartnewsystem_registro_producao_turno | null
   id_turno: number | null
+  id_centro_custo: number | null
+  data_hora_encerramento: Date | null
+  data_log: Date | null
   equipment: {
     ID: number
     equipamento_codigo: string | null

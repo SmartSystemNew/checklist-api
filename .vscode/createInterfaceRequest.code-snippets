@@ -8,7 +8,7 @@
       "  user: IUser",
       "}"
 		],
-		"description": "Create an example controller",
+		"description": "Create an example interface Request",
 		"scope": "typescript"
 	}
 }
