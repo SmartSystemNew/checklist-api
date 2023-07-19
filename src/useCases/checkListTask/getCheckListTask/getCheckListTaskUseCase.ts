@@ -32,15 +32,19 @@ export default class GetCheckListTaskUseCase implements IUseCase {
         })
 
         formatArray.forEach((value) => {
-          response.push({
-            id: value.id,
-            description: value.description,
-            familyId: value.familyId,
-          })
+          if (!response.find((item) => item.id === value.id)) {
+            response.push({
+              id: value.id,
+              description: value.description,
+              familyId: value.familyId,
+            })
+          }
         })
       }
     }
 
-    return response
+    return {
+      task: response,
+    }
   }
 }
