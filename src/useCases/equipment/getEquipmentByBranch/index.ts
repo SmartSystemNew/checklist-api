@@ -1,17 +1,14 @@
 import EquipmentRepository from '@/repositories/implementations/EquipmentRepository'
 import GetEquipmentByBranchUseCase from './getEquipmentByBranchUseCase'
 import GetEquipmentByBranchController from './getEquipmentByBranchController'
-import ProductionRegisterRepository from '@/repositories/implementations/ProductionRegisterRepository'
-import ProductionRegisterDataRepository from '@/repositories/implementations/ProductionRegisterDataRepository'
+import EquipmentRegisterRepository from '@/repositories/implementations/EquipmentRegisterRepository'
 
 const equipmentRepository = new EquipmentRepository()
-const productionRegisterRepository = new ProductionRegisterRepository()
-const productionRegisterDataRepository = new ProductionRegisterDataRepository()
+const equipmentRegisterRepository = new EquipmentRegisterRepository()
 
 const useCase = new GetEquipmentByBranchUseCase(
   equipmentRepository,
-  productionRegisterRepository,
-  productionRegisterDataRepository,
+  equipmentRegisterRepository,
 )
 
 const controller = new GetEquipmentByBranchController(useCase)

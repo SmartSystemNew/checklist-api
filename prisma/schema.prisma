@@ -932,6 +932,7 @@ model cadastro_de_empresas {
   smartnewsystem_compras_rodape                                                  smartnewsystem_compras_rodape[]
   smartnewsystem_financeiro_meta                                                 smartnewsystem_financeiro_meta[]
   smartnewsystem_registro_turno                                                  smartnewsystem_registro_turno[]
+  smartnewsystem_registro_equipamento                                            smartnewsystem_registro_equipamento[]
 
   @@index([id_filial_padrao], map: "fk_empresa_filial")
   @@index([razao_social, nome_fantasia], map: "indexRazaoFantasia")
@@ -1040,6 +1041,7 @@ model cadastro_de_equipamentos {
   sofman_programacao_funcionamento                  sofman_programacao_funcionamento[]
   sofman_tempo_maquina_parada                       sofman_tempo_maquina_parada[]                       @ignore
   smartnewsystem_compras_item_solicitacao           smartnewsystem_compras_item_solicitacao[]
+  smartnewsystem_registro_equipamento               smartnewsystem_registro_equipamento[]
 
   @@unique([ID_filial, equipamento_codigo], map: "unq_filial_equipamento_codigo")
   @@index([criticidade], map: "criticidade")
@@ -3523,6 +3525,17 @@ model smartnewsystem_registro_producao_destino_destino_dmt {
   @@index([id_centro_custo], map: "fk_dmt_id_centro_custo")
   @@index([id_destino], map: "fk_dmt_id_destino")
   @@index([id_origem], map: "fk_dmt_id_origem")
+}
+
+model smartnewsystem_registro_equipamento {
+  id             Int     @id @default(autoincrement())
+  id_cliente     Int
+  id_equipamento Int
+  horimetro      Decimal @db.Decimal(10, 2)
+  quilometragem  Decimal @db.Decimal(10, 2)
+
+  company   cadastro_de_empresas     @relation(fields: [id_cliente], references: [ID])
+  equipment cadastro_de_equipamentos @relation(fields: [id_equipamento], references: [ID])
 }
 
 model smartnewsystem_registro_producao_origem {

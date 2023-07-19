@@ -2,13 +2,11 @@ import IUseCase from '@/models/IUseCase'
 import IGetEquipmentByBranchRequestDTO from './IGetEquipmentByBranchRequestDTO'
 import IEquipmentRepository from '@/repositories/IEquipmentRepository'
 import IGetEquipmentByBranchResponseDTO from './IGetEquipmentByBranchResponseDTO'
-import IProductionRegisterRepository from '@/repositories/IProductionRegisterRepository'
-import IProductionRegisterDataRepository from '@/repositories/IProductionRegisterDataRepository'
+import IEquipmentRegisterRepository from '@/repositories/IEquipmentRegisterRepository'
 export default class GetEquipmentByBranchUseCase implements IUseCase {
   constructor(
     private equipmentRepository: IEquipmentRepository,
-    private productionRegisterRepository: IProductionRegisterRepository,
-    private productionRegisterDataRepository: IProductionRegisterDataRepository,
+    private equipmentRegisterRepository: IEquipmentRegisterRepository,
   ) {}
 
   async execute(data: IGetEquipmentByBranchRequestDTO) {
@@ -19,15 +17,8 @@ export default class GetEquipmentByBranchUseCase implements IUseCase {
     const response: IGetEquipmentByBranchResponseDTO[] = []
 
     for await (const item of allEquipment) {
-      const mileage =
-        await this.productionRegisterRepository.findLastMileageByEquipment(
-          item.ID,
-        )
-
-      const hourMeter =
-        await this.productionRegisterDataRepository.findLastHourMeterByEquipment(
-          item.ID,
-        )
+      const registerEquipment =
+        await this.equipmentRegisterRepository.findByEquipment(item.ID)
 
       response.push({
         id: item.ID,
@@ -36,9 +27,11 @@ export default class GetEquipmentByBranchUseCase implements IUseCase {
         costCenter: item.id_centro_custo || 0,
         clientId: item.ID_cliente || 0,
         branchId: item.ID_filial || 0,
-        mileage: Number(mileage),
+        mileage: registerEquipment
+          ? Number(registerEquipment.quilometragem)
+          : 0,
         familyId: item.ID_familia || 0,
-        hourMeter: Number(hourMeter),
+        hourMeter: registerEquipment ? Number(registerEquipment.horimetro) : 0,
       })
     }
 
