@@ -5,6 +5,7 @@ import getCheckListByFamily from '@/useCases/checkListTask/getCheckListTaskByFam
 import getCheckListTask from '@/useCases/checkListTask/getCheckListTask'
 import getInfo from '@/useCases/checkList/getInfo'
 import getBoundFamily from '@/useCases/checkList/getBoundFamily'
+import getInfoItem from '@/useCases/checkListTask/getInfoItem'
 
 export default async function checkListRoutes(checkList: FastifyInstance) {
   checkList.get('/byLimitTime', getCheckListByLimitTime.handle)
@@ -13,4 +14,5 @@ export default async function checkListRoutes(checkList: FastifyInstance) {
   checkList.get('/task', getCheckListTask.handle)
   checkList.get('/info', getInfo.handle)
   checkList.get('/boundFamily', getBoundFamily.handle)
+  checkList.get('/infoItem', getInfoItem.handle)
 }

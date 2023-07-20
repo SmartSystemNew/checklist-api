@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { IFindTaskByFamily } from '@/models/ICheckListItem'
+import { IFindTaskByFamily, IInfo } from '@/models/ICheckListItem'
 import ICheckListItemRepository from '../ICheckListItemRepository'
 
 export default class CheckListItemRepository
@@ -25,6 +25,23 @@ export default class CheckListItemRepository
       where: {
         checkList: {
           id_familia: familyId,
+        },
+      },
+    })
+  }
+
+  async info(clientId: number): Promise<IInfo[]> {
+    return await this.table.findMany({
+      select: {
+        id: true,
+        id_checklist: true,
+        id_tarefa: true,
+      },
+      where: {
+        checkList: {
+          familyEquipment: {
+            ID_cliente: clientId,
+          },
         },
       },
     })
