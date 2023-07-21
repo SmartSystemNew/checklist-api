@@ -11,7 +11,11 @@ export default class GetInfoItemUseCase implements IUseCase {
     )
 
     return {
-      checkListItem: allCheckListItem,
+      checkListItem: allCheckListItem.map((item) => ({
+        id: item.id,
+        checklistId: item.id_checklist,
+        taskId: item.id_tarefa,
+      })),
     }
   }
 }

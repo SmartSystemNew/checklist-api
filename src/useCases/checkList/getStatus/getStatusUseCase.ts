@@ -11,7 +11,12 @@ export default class GetStatusUseCase implements IUseCase {
     )
 
     return {
-      checkListStatus: allCheckListStatus,
+      checkListStatus: allCheckListStatus.map((item) => ({
+        id: item.id,
+        description: item.descricao || '',
+        icon: item.icone || '',
+        color: item.cor || '',
+      })),
     }
   }
 }

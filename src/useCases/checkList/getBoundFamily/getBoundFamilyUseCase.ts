@@ -11,7 +11,11 @@ export default class GetBoundFamilyUseCase implements IUseCase {
     )
 
     return {
-      checkList: allCheckList,
+      checkList: allCheckList.map((item) => ({
+        id: item.id,
+        familyId: item.id_familia,
+        description: item.descricao,
+      })),
     }
   }
 }
