@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { IInfoByLogin } from '@/models/ICheckListPeriod'
 import ICheckListPeriodRepository from '../ICheckListPeriodRepository'
+import { Prisma, smartnewsystem_producao_checklist_turno } from '@prisma/client'
 
 export default class CheckListPeriodRepository
   implements ICheckListPeriodRepository
@@ -22,6 +23,14 @@ export default class CheckListPeriodRepository
           login,
         },
       },
+    })
+  }
+
+  async create(
+    data: Prisma.smartnewsystem_producao_checklist_turnoUncheckedCreateInput,
+  ): Promise<smartnewsystem_producao_checklist_turno> {
+    return await this.table.create({
+      data,
     })
   }
 }

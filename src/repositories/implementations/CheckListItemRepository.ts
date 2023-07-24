@@ -10,6 +10,7 @@ export default class CheckListItemRepository
   async findTaskByFamily(familyId: number): Promise<IFindTaskByFamily[]> {
     return await this.table.findMany({
       select: {
+        id: true,
         checkList: {
           select: {
             id_familia: true,

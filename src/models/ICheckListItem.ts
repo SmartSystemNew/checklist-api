@@ -1,4 +1,5 @@
 export interface IFindTaskByFamily {
+  id: number
   checkList: {
     id_familia: number | null
   } | null
