@@ -6,4 +6,8 @@ export default interface ICheckListPeriodRepository {
   create(
     data: Prisma.smartnewsystem_producao_checklist_turnoUncheckedCreateInput,
   ): Promise<smartnewsystem_producao_checklist_turno>
+  update(
+    id: number,
+    data: Prisma.smartnewsystem_producao_checklist_turnoUpdateInput,
+  ): Promise<smartnewsystem_producao_checklist_turno>
 }

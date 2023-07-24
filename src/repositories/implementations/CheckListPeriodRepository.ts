@@ -33,4 +33,16 @@ export default class CheckListPeriodRepository
       data,
     })
   }
+
+  async update(
+    id: number,
+    data: Prisma.smartnewsystem_producao_checklist_turnoUpdateInput,
+  ): Promise<smartnewsystem_producao_checklist_turno> {
+    return await this.table.update({
+      data,
+      where: {
+        id,
+      },
+    })
+  }
 }
