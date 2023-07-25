@@ -3201,15 +3201,16 @@ model smartnewsystem_producao_checklist_status {
 }
 
 model smartnewsystem_producao_checklist_status_acao {
-  id                                        Int                                        @id @default(autoincrement())
-  id_tarefa                                 Int?
-  id_status                                 Int?
-  descricao                                 String?                                    @db.Char(50)
-  impeditivo                                Boolean?                                   @default(false)
-  log_user                                  String?                                    @db.Char(50)
-  log_date                                  DateTime?                                  @default(now()) @db.DateTime(0)
-  smartnewsystem_producao_checklist_status  smartnewsystem_producao_checklist_status?  @relation(fields: [id_status], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_status_id")
-  smartnewsystem_producao_checklist_tarefas smartnewsystem_producao_checklist_tarefas? @relation(fields: [id_tarefa], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_tarefa_id")
+  id         Int       @id @default(autoincrement())
+  id_tarefa  Int?
+  id_status  Int?
+  descricao  String?   @db.Char(50)
+  impeditivo Boolean?  @default(false)
+  log_user   String?   @db.Char(50)
+  log_date   DateTime? @default(now()) @db.DateTime(0)
+
+  checkListStatus smartnewsystem_producao_checklist_status?  @relation(fields: [id_status], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_status_id")
+  checkListTask   smartnewsystem_producao_checklist_tarefas? @relation(fields: [id_tarefa], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_tarefa_id")
 
   @@index([id_status], map: "fk_producao_status_nok_status_id")
   @@index([id_tarefa], map: "fk_producao_status_nok_tarefa_id")
