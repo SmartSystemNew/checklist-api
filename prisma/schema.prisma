@@ -3172,45 +3172,52 @@ model smartnewsystem_producao_checklist {
 }
 
 model smartnewsystem_producao_checklist_itens {
-  id              Int                                        @id @default(autoincrement())
-  id_checklist    Int?
-  id_tarefa       Int?
-  log_user        String?                                    @db.Char(50)
-  log_date        DateTime?                                  @default(now()) @db.DateTime(0)
-  checkList       smartnewsystem_producao_checklist?         @relation(fields: [id_checklist], references: [id], onDelete: Restrict, map: "fk_prod_checklist_id")
-  checkListTask   smartnewsystem_producao_checklist_tarefas? @relation(fields: [id_tarefa], references: [id], onDelete: Restrict, map: "fk_producao_checklist_tarefa_id")
-  checkListPeriod smartnewsystem_producao_checklist_turno[]
+  id               Int                                         @id @default(autoincrement())
+  id_checklist     Int?
+  id_tarefa        Int?
+  id_controle      Int?                                        @default(1)
+  log_user         String?                                     @db.Char(50)
+  log_date         DateTime?                                   @default(now()) @db.DateTime(0)
+  checkList        smartnewsystem_producao_checklist?          @relation(fields: [id_checklist], references: [id], onDelete: Restrict, map: "fk_prod_checklist_id")
+  checkListTask    smartnewsystem_producao_checklist_tarefas?  @relation(fields: [id_tarefa], references: [id], onDelete: Restrict, map: "fk_producao_checklist_tarefa_id")
+  checkListControl smartnewsystem_producao_checklist_controle? @relation(fields: [id_controle], references: [id])
+  checkListPeriod  smartnewsystem_producao_checklist_turno[]
 
   @@unique([id_checklist, id_tarefa], map: "id_checklist")
   @@index([id_tarefa], map: "fk_producao_checklist_tarefa_id")
 }
 
 model smartnewsystem_producao_checklist_status {
-  id                                            Int                                                     @id @default(autoincrement())
-  id_cliente                                    Int?
-  descricao                                     String?                                                 @db.Char(50)
-  item_conforme                                 smartnewsystem_producao_checklist_status_item_conforme?
-  icone                                         String?                                                 @db.Char(50)
-  cor                                           smartnewsystem_producao_checklist_status_cor?
-  log_user                                      String?                                                 @db.Char(50)
-  log_date                                      DateTime?                                               @default(now()) @db.DateTime(0)
-  cadastro_de_empresas                          cadastro_de_empresas?                                   @relation(fields: [id_cliente], references: [ID], onDelete: Restrict, map: "fk_prod_checklist_id_cliente")
-  smartnewsystem_producao_checklist_status_acao smartnewsystem_producao_checklist_status_acao[]
+  id            Int                                                     @id @default(autoincrement())
+  id_cliente    Int?
+  id_controle   Int?                                                    @default(1)
+  descricao     String?                                                 @db.Char(50)
+  item_conforme smartnewsystem_producao_checklist_status_item_conforme?
+  icone         String?                                                 @db.Char(50)
+  cor           smartnewsystem_producao_checklist_status_cor?
+  log_user      String?                                                 @db.Char(50)
+  log_date      DateTime?                                               @default(now()) @db.DateTime(0)
+
+  company               cadastro_de_empresas?                           @relation(fields: [id_cliente], references: [ID], onDelete: Restrict, map: "fk_prod_checklist_id_cliente")
+  checkListStatusAction smartnewsystem_producao_checklist_status_acao[]
+  checkListControl      smartnewsystem_producao_checklist_controle?     @relation(fields: [id_controle], references: [id])
 
   @@unique([id_cliente, descricao], map: "id_cliente")
 }
 
 model smartnewsystem_producao_checklist_status_acao {
-  id         Int       @id @default(autoincrement())
-  id_tarefa  Int?
-  id_status  Int?
-  descricao  String?   @db.Char(50)
-  impeditivo Boolean?  @default(false)
-  log_user   String?   @db.Char(50)
-  log_date   DateTime? @default(now()) @db.DateTime(0)
+  id          Int       @id @default(autoincrement())
+  id_tarefa   Int?
+  id_status   Int?
+  id_controle Int?      @default(1)
+  descricao   String?   @db.Char(50)
+  impeditivo  Boolean?  @default(false)
+  log_user    String?   @db.Char(50)
+  log_date    DateTime? @default(now()) @db.DateTime(0)
 
-  checkListStatus smartnewsystem_producao_checklist_status?  @relation(fields: [id_status], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_status_id")
-  checkListTask   smartnewsystem_producao_checklist_tarefas? @relation(fields: [id_tarefa], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_tarefa_id")
+  checkListStatus  smartnewsystem_producao_checklist_status?   @relation(fields: [id_status], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_status_id")
+  checkListTask    smartnewsystem_producao_checklist_tarefas?  @relation(fields: [id_tarefa], references: [id], onDelete: Restrict, map: "fk_producao_status_nok_tarefa_id")
+  checkListControl smartnewsystem_producao_checklist_controle? @relation(fields: [id_controle], references: [id])
 
   @@index([id_status], map: "fk_producao_status_nok_status_id")
   @@index([id_tarefa], map: "fk_producao_status_nok_tarefa_id")
@@ -3247,6 +3254,15 @@ model smartnewsystem_producao_checklist_turno {
   @@index([id_filial], map: "fk_checklist_turno_filial_id")
   @@index([id_registro_producao], map: "fk_prod_chechklist_reg_prod_id")
   @@index([id_item_checklist], map: "fk_prod_checklist_item_id")
+}
+
+model smartnewsystem_producao_checklist_controle {
+  id        Int    @id @default(autoincrement())
+  descricao String
+
+  checkListStatusAction                   smartnewsystem_producao_checklist_status_acao[]
+  checkListStatus                         smartnewsystem_producao_checklist_status[]
+  smartnewsystem_producao_checklist_itens smartnewsystem_producao_checklist_itens[]
 }
 
 model smartnewsystem_producao_letra_turno {
