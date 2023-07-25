@@ -13,6 +13,7 @@ export default class CheckListStatusRepository
         id: true,
         id_cliente: true,
         descricao: true,
+        id_controle: true,
         cor: true,
         icone: true,
       },
