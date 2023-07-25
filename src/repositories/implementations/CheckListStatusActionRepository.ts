@@ -34,6 +34,7 @@ export default class CheckListStatusActionRepository
         id: item.id,
         taskId: item.id_tarefa || 0,
         statusId: item.id_status || 0,
+        controlId: item.id_controle,
         description: item.descricao || '',
         impeding: item.impeditivo || 0,
         logUser: item.log_user || '',
