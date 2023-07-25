@@ -5,6 +5,7 @@ import checkListRoutes from './checkList'
 import periodRoutes from './period'
 import equipmentRoutes from './equipment'
 import checkListPeriodRoutes from './checkListPeriod'
+import checkListControlRoutes from './checkListControl'
 
 export default async function privateRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT)
@@ -23,5 +24,8 @@ export default async function privateRoutes(app: FastifyInstance) {
   })
   app.register(checkListPeriodRoutes, {
     prefix: '/checkListPeriod',
+  })
+  app.register(checkListControlRoutes, {
+    prefix: '/checkListControl',
   })
 }

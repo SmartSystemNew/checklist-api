@@ -1,16 +1,16 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import IController from '../../../models/IController'
 import IUseCase from '../../../models/IUseCase'
-import IGetInfoByLoginRequestDTO from './IGetInfoByLoginRequestDTO'
+import IGetInfoCheckListControlRequestDTO from './IGetInfoCheckListControlRequestDTO'
 import { HttpStatusCode } from '@/config/CustomError'
 
-export default class GetInfoByLoginController implements IController {
+export default class GetInfoCheckListControlController implements IController {
   constructor(private useCase: IUseCase) {
     this.handle = this.handle.bind(this)
   }
 
   async handle(req: FastifyRequest, res: FastifyReply) {
-    const request: IGetInfoByLoginRequestDTO = {
+    const request: IGetInfoCheckListControlRequestDTO = {
       user: req.user,
     }
 

@@ -37,6 +37,7 @@ export default class CheckListItemRepository
         id: true,
         id_checklist: true,
         id_tarefa: true,
+        id_controle: true,
       },
       where: {
         checkList: {

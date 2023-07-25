@@ -3209,7 +3209,7 @@ model smartnewsystem_producao_checklist_status_acao {
   id          Int       @id @default(autoincrement())
   id_tarefa   Int?
   id_status   Int?
-  id_controle Int?      @default(1)
+  id_controle Int?      @default(3)
   descricao   String?   @db.Char(50)
   impeditivo  Boolean?  @default(false)
   log_user    String?   @db.Char(50)

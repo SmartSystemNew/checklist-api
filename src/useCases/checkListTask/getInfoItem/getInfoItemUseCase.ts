@@ -15,6 +15,7 @@ export default class GetInfoItemUseCase implements IUseCase {
         id: item.id,
         checklistId: item.id_checklist,
         taskId: item.id_tarefa,
+        controlId: item.id_controle,
       })),
     }
   }

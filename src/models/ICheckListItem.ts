@@ -13,4 +13,5 @@ export interface IInfo {
   id: number
   id_checklist: number | null
   id_tarefa: number | null
+  id_controle: number | null
 }
