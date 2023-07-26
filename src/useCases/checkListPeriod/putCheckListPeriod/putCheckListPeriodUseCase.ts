@@ -8,6 +8,8 @@ export default class PutCheckListPeriodUseCase implements IUseCase {
   async execute(data: IPutCheckListPeriodRequestDTO) {
     await this.checkListPeriodRepository.update(data.checkListPeriodId, {
       status_item: data.statusId,
+      status_item_nc: data.statusAction,
+      observacao: data.observation,
     })
 
     return {
