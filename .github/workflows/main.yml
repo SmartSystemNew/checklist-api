@@ -44,13 +44,6 @@ jobs:
           local_path: ./combined/*
           port: 22022
 
-      - name: Install Node.js
-        run: |
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load nvm
-          nvm install v16.15.1
-
       - name: SSH + Install dependencies
         uses: appleboy/ssh-action@master
         with:
@@ -61,6 +54,4 @@ jobs:
           script: |
             nvm use v16.15.1
             cd /home/checklistappapi/public_html/
-            yarn
-            yarn prisma generate
             pm2 restart checklistappapi
