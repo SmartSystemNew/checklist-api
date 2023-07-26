@@ -4,7 +4,7 @@ export interface IInfo {
   statusId: number
   controlId: number | null
   description: string
-  impeding: boolean | number
+  impeding: boolean
   logUser: string
   logDate: Date
 }
