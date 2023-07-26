@@ -3245,6 +3245,7 @@ model smartnewsystem_producao_checklist_turno {
   id_item_checklist    Int?
   status_item          Int?
   status_item_nc       Int?
+  observacao           String?
   imagem               String?                                  @db.VarChar(200)
   log_date             DateTime?                                @default(now()) @db.DateTime(0)
   branch               cadastro_de_filiais?                     @relation(fields: [id_filial], references: [ID], onDelete: Restrict, map: "fk_checklist_turno_filial_id")

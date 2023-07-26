@@ -14,6 +14,8 @@ export default class PutChecKListPeriodController implements IController {
     const bodySchema = z.object({
       checkListPeriodId: z.coerce.number(),
       statusId: z.coerce.number(),
+      statusAction: z.coerce.number().nullable().optional(),
+      observation: z.coerce.string(),
     })
 
     const request: IPutCheckListPeriodRequestDTO = {

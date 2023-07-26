@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma'
+import { IInfo } from '@/models/ICheckListStatusAction'
 import { smartnewsystem_producao_checklist_status_acao } from '@prisma/client'
 import ICheckListStatusActionRepository from '../ICheckListStatusActionRepository'
-import { IInfo } from '@/models/ICheckListStatusAction'
 
 export default class CheckListStatusActionRepository
   implements ICheckListStatusActionRepository
@@ -36,7 +36,7 @@ export default class CheckListStatusActionRepository
         statusId: item.id_status || 0,
         controlId: item.id_controle,
         description: item.descricao || '',
-        impeding: item.impeditivo || 0,
+        impeding: item.impeditivo || false,
         logUser: item.log_user || '',
         logDate: item.log_date || new Date(),
       }
