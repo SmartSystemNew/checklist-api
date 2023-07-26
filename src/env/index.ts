@@ -6,6 +6,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(3333),
   URL: z.string(),
   ORIGIN: z.string(),
+  KEY: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

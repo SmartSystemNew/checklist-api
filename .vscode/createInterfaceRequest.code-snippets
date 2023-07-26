@@ -1,0 +1,14 @@
+{
+	"createMainRoute": {
+		"prefix": "createInterfaceRequest",
+		"body": [
+			"import { IUser } from '@/models/IUser'",
+      "",
+      "export default interface IMyInterfaceRequestDTO {",
+      "  user: IUser",
+      "}"
+		],
+		"description": "Create an example interface Request",
+		"scope": "typescript"
+	}
+}
