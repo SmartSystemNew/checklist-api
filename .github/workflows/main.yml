@@ -40,7 +40,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          remote_path: /home/checklistappapi/public_html/
+          remote_path: /home/checklistapi/public_html/
           local_path: ./combined/*
           port: 22022
 
@@ -53,5 +53,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             nvm use v16.15.1
-            cd /home/checklistappapi/public_html/
-            pm2 restart checklistappapi
+            cd /home/checklistapi/public_html/
+            pm2 restart checklistapi
