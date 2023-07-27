@@ -18,6 +18,12 @@ jobs:
           node-version: '16.15.1'
           yarn-cache-folder: ~/.cache/yarn
 
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: yarn prisma generate
+
       - name: Build
         run: yarn build
 
@@ -49,5 +55,4 @@ jobs:
             nvm use v16.15.1
             cd /home/checklistapi/public_html/
             yarn
-            yarn prisma generate
             pm2 restart checklistapi
