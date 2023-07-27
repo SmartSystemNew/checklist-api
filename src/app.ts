@@ -1,12 +1,17 @@
 import fastify from 'fastify'
 import routes from './routes'
 import fastifyJwt from '@fastify/jwt'
+import cors from '@fastify/cors'
 import { env } from './env'
 import CustomError, { HttpStatusCode } from './config/CustomError'
 import { ZodError } from 'zod'
 
 export const app = fastify({
   logger: true,
+})
+
+app.register(cors, {
+  origin: env.ORIGIN,
 })
 
 app.register(fastifyJwt, {

@@ -14,6 +14,6 @@ export interface IUser {
   pswd: string
   new_pswd: string | null
   name: string | null
-  id_cliente: number
+  id_cliente: number | null
   branchBound: IListBoundBranch[]
 }
