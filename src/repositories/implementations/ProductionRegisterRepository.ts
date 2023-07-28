@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { IListRegisterByTime } from '@/models/IProductionRegister'
 import IProductionRegisterRepository from '../IProductionRegisterRepository'
-import { Decimal } from '@prisma/client/runtime'
+import { Decimal } from '@prisma/client/runtime/library'
 import { Prisma, smartnewsystem_registro_producao } from '@prisma/client'
 
 export default class ProductionRegisterRepository
@@ -109,5 +109,17 @@ export default class ProductionRegisterRepository
     })
 
     return register
+  }
+
+  async update(
+    id: number,
+    data: Prisma.smartnewsystem_registro_producaoUpdateInput,
+  ): Promise<void> {
+    await this.table.update({
+      data,
+      where: {
+        id,
+      },
+    })
   }
 }

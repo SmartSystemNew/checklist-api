@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
-import { Decimal } from '@prisma/client/runtime'
 import IProductionRegisterDataRepository from '../IProductionRegisterDataRepository'
+import { Decimal } from '@prisma/client/runtime/library'
 
 export default class ProductionRegisterDataRepository
   implements IProductionRegisterDataRepository

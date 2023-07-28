@@ -47,6 +47,7 @@ export default class PostCheckListUseCase implements IUseCase {
       DATA: data.initialTime,
       data_hora_inicio: data.initialTime,
       // turno: period.turno || 'Turno_1',
+      status: 1,
       idlog: 0,
     })
 

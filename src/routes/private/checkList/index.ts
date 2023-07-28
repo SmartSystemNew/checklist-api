@@ -10,6 +10,7 @@ import getStatus from '@/useCases/checkList/getStatus'
 import getInfoByLogin from '@/useCases/checkListPeriod/getInfoByLogin'
 import getStatusAction from '@/useCases/checkList/getStatusAction'
 import getInfoStatusAction from '@/useCases/checkList/getInfoStatusAction'
+import patchCloseCheckList from '@/useCases/checkList/patchCloseCheckList'
 
 export default async function checkListRoutes(checkList: FastifyInstance) {
   checkList.get('/byLimitTime', getCheckListByLimitTime.handle)
@@ -23,4 +24,5 @@ export default async function checkListRoutes(checkList: FastifyInstance) {
   checkList.get('/period/infoByLogin', getInfoByLogin.handle)
   checkList.get('/statusAction', getStatusAction.handle)
   checkList.get('/infoStatusAction', getInfoStatusAction.handle)
+  checkList.patch('/close', patchCloseCheckList.handle)
 }
