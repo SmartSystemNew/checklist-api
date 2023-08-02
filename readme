@@ -1,0 +1,16 @@
+# SERVER API
+
+Para iniciar o servidor , primeiro baixe as dependências
+```
+npm i
+```
+Gere as dependências do banco
+```
+npx prisma generate dev
+```
+Agora inicie 
+```
+npm run dev
+```
+
+## Configuração API

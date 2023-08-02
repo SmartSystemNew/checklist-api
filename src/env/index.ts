@@ -7,6 +7,8 @@ const envSchema = z.object({
   URL: z.string(),
   ORIGIN: z.string(),
   KEY: z.string(),
+  KEY_PATH: z.string(),
+  CERT_PATH: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
