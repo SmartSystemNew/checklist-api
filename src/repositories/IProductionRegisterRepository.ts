@@ -1,6 +1,6 @@
 import { IListRegisterByTime } from '@/models/IProductionRegister'
 import { Prisma, smartnewsystem_registro_producao } from '@prisma/client'
-import { Decimal } from '@prisma/client/runtime'
+import { Decimal } from '@prisma/client/runtime/library'
 
 export default interface IProductionRegisterRepository {
   listRegisterByBranch(branch: number[]): Promise<IListRegisterByTime[]>
@@ -13,4 +13,8 @@ export default interface IProductionRegisterRepository {
   save(
     data: Prisma.smartnewsystem_registro_producaoUncheckedCreateInput,
   ): Promise<smartnewsystem_registro_producao>
+  update(
+    id: number,
+    data: Prisma.smartnewsystem_registro_producaoUpdateInput,
+  ): Promise<void>
 }

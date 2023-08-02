@@ -9,3 +9,6 @@ app
   .then(() => {
     console.log(`Serving is running in ${env.URL}`)
   })
+  .catch((err) => {
+    console.error(err)
+  })
