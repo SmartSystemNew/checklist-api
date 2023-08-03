@@ -1,5 +1,5 @@
 import fastify from 'fastify'
-import fs from 'fs'
+// import fs from 'fs'
 // import proxy from '@fastify/http-proxy'
 import routes from './routes'
 import fastifyJwt from '@fastify/jwt'
@@ -8,16 +8,16 @@ import { env } from './env'
 import CustomError, { HttpStatusCode } from './config/CustomError'
 import { ZodError } from 'zod'
 
-const keyContent = fs.readFileSync(env.KEY_PATH)
-const certContent = fs.readFileSync(env.CERT_PATH)
+// const keyContent = fs.readFileSync(env.KEY_PATH)
+// const certContent = fs.readFileSync(env.CERT_PATH)
 
 export const app = fastify({
   logger: true,
-  http2: true,
-  https: {
-    key: keyContent,
-    cert: certContent,
-  },
+  // http2: true,
+  // https: {
+  //   key: keyContent,
+  //   cert: certContent,
+  // },
 })
 
 app.register(cors, {
