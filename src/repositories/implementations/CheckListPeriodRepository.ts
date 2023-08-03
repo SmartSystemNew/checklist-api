@@ -16,6 +16,7 @@ export default class CheckListPeriodRepository
         id_registro_producao: true,
         id_item_checklist: true,
         status_item: true,
+        status_item_nc: true,
         log_date: true,
       },
       where: {

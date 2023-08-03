@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import fs from 'fs'
+// import proxy from '@fastify/http-proxy'
 import routes from './routes'
 import fastifyJwt from '@fastify/jwt'
 import cors from '@fastify/cors'
@@ -30,7 +31,12 @@ app.register(fastifyJwt, {
   // },
 })
 
-app.get('/', (req, res) => res.status(HttpStatusCode.OK).send(''))
+// app.register(proxy, {
+//   upstream: 'https://checklist-api.smartnewsistemas.com.br',
+//   http2: true,
+// })
+
+app.get('/', (req, res) => res.status(HttpStatusCode.NO_CONTENT).send(''))
 
 app.register(routes)
 
