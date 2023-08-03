@@ -10,7 +10,10 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
   ) {}
 
   async execute(data: IGetCheckListLimitTimeRequestDTO) {
-    const dateStatic = dayjs('2022-02-01')
+    const dateStatic = dayjs().subtract(2, 'd')
+
+    console.log(dateStatic)
+
     const register = await this.productionRegisterRepository.listRegisterByTime(
       dateStatic.toDate(),
       data.user.branchBound.map((item) => item.branch.ID),
