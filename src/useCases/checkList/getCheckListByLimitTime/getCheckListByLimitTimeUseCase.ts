@@ -10,7 +10,10 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
   ) {}
 
   async execute(data: IGetCheckListLimitTimeRequestDTO) {
-    const dateStatic = dayjs('2022-02-01')
+    const dateStatic = dayjs().subtract(2, 'd')
+
+    console.log(dateStatic)
+
     const register = await this.productionRegisterRepository.listRegisterByTime(
       dateStatic.toDate(),
       data.user.branchBound.map((item) => item.branch.ID),
@@ -28,7 +31,7 @@ export default class GetCheckListByLimitTimeUseCase implements IUseCase {
           status: item.status ? 'open' : 'close',
           equipmentId: item.equipment?.ID || 0,
           mileage: Number(item.quilometragem),
-          finalMileage: item.quilometragem_final || 0,
+          finalMileage: Number(item.quilometragem_final) || 0,
           initialTime: dayjs(item.data_hora_inicio).format(
             'DD-MM-YYYY HH:mm:ss',
           ),
