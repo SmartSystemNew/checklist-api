@@ -19,6 +19,7 @@ export default class GetInfoByLoginUseCase implements IUseCase {
           productionRegisterId: item.id_registro_producao || 0,
           checkListItemId: item.id_item_checklist || 0,
           statusItem: item.status_item || 0,
+          statusNC: item.status_item_nc || 0,
           logDate: item.log_date,
         }
       },

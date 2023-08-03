@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "vercel-build": "npx prisma generate deploy && tsup src --out-dir build",
     "generate": "node prisma generate dev",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
@@ -25,6 +26,7 @@
   },
   "dependencies": {
     "@fastify/cors": "8.3.0",
+    "@fastify/http-proxy": "9.2.1",
     "@fastify/jwt": "7.2.0",
     "@prisma/client": "5.0.0",
     "bcrypt": "5.1.0",
