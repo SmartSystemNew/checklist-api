@@ -2,15 +2,15 @@ import { Decimal } from '@prisma/client/runtime/library'
 
 export default interface IGetInfoResponseDTO {
   id: number
-  id_centro_custo: number
-  id_equipamento: number
-  id_turno: number | null
-  quilometragem: number | Decimal | null
-  quilometragem_final: number | Decimal | null
+  costCenterId: number
+  equipmentId: number
+  periodId: number | null
+  initialMileage: number | Decimal | null
+  finalMileage: number | Decimal | null
   login: string
-  DATA: Date | null
-  data_hora_inicio: Date | null
-  data_hora_encerramento: Date | null
-  status: number
-  data_log: Date | null
+  data: Date | null
+  initialTime: Date | null
+  finalTime: Date | null
+  status: 'open' | 'close'
+  dataLog: Date | null
 }

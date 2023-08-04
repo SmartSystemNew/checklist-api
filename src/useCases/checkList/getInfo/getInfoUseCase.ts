@@ -20,18 +20,18 @@ export default class GetInfoUseCase implements IUseCase {
     const response: IGetInfoResponseDTO[] = register.map((item) => {
       return {
         id: item.id,
-        id_centro_custo: item.id_centro_custo || 0,
-        id_equipamento: item.equipment?.ID || 0,
-        id_turno: item.id_turno,
-        DATA: item.DATA,
-        data_hora_encerramento: item.data_hora_encerramento,
-        data_hora_inicio: item.data_hora_inicio,
-        status: item.status,
-        data_log: item.data_log,
+        costCenterId: item.id_centro_custo || 0,
+        equipmentId: item.equipment?.ID || 0,
+        periodId: item.id_turno,
+        data: item.DATA,
+        initialTime: item.data_hora_encerramento,
+        finalTime: item.data_hora_inicio,
+        status: item.status ? 'open' : 'close',
+        dataLog: item.data_log,
         login: item.login || '',
-        quilometragem: item.quilometragem,
-        quilometragem_final: item.quilometragem_final,
-        turno: item.turno,
+        initialMileage: item.quilometragem,
+        finalMileage: item.quilometragem_final,
+        period: item.turno,
       }
     })
 
