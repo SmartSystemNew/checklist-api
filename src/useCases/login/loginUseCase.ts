@@ -11,9 +11,7 @@ export default class LoginUseCase implements IUseCase {
     const user = await this.userRepository.findByLogin(data.login)
 
     if (!user) {
-      return {
-        message: 'User not found',
-      }
+      throw CustomError.notFound('Usuário nao encontrado!')
     }
 
     const passwordTypedMD5 = md5(data.pass)
