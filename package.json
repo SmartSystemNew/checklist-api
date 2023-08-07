@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "vercel-build": "npx prisma generate deploy && tsup src --out-dir build",
+    "vercel-build": "npx prisma generate deploy",
     "generate": "node prisma generate dev",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
