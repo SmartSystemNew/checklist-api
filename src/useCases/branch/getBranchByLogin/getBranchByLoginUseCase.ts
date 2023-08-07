@@ -1,8 +1,8 @@
-import IUseCase from '@/models/IUseCase'
-import IBranchXUserRepository from '@/repositories/IBranchXUserRepository'
-import IUserRepository from '@/repositories/IUserRepository'
+import IUseCase from '../../../models/IUseCase'
+import IBranchXUserRepository from '../../../repositories/IBranchXUserRepository'
+import IUserRepository from '../../../repositories/IUserRepository'
 import IGetBranchByLoginRequestDTO from './IGetBranchByLoginRequestDTO'
-import CustomError from '@/config/CustomError'
+import CustomError from '../../../config/CustomError'
 
 export default class GetBranchByLoginUseCase implements IUseCase {
   constructor(
