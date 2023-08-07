@@ -22,8 +22,12 @@ export default class GetBranchByLoginUseCase implements IUseCase {
       user.login,
     )
 
-    return {
-      branch: allBranch,
-    }
+    return allBranch.map((item) => {
+      return {
+        id: item.branch.ID,
+        corporateName: item.branch.filial_numero,
+        fantasyName: item.branch.nome_fantasia,
+      }
+    })
   }
 }
