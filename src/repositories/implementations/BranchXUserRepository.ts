@@ -22,6 +22,9 @@ export default class BranchXUserRepository implements IBranchXUserRepository {
       where: {
         id_cliente: clientId,
         id_user: login,
+        branch: {
+          status: 1,
+        },
       },
     })
   }
