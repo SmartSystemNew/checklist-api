@@ -1,8 +1,8 @@
-import IUseCase from '@/models/IUseCase'
+import IUseCase from '../../../models/IUseCase'
 import IPostSyncCheckListRequestDTO from './IPostSyncCheckListRequestDTO'
-import IProductionRegisterRepository from '@/repositories/IProductionRegisterRepository'
-import ICheckListPeriodRepository from '@/repositories/ICheckListPeriodRepository'
-import IEquipmentRepository from '@/repositories/IEquipmentRepository'
+import IProductionRegisterRepository from '../../../repositories/IProductionRegisterRepository'
+import ICheckListPeriodRepository from '../../../repositories/ICheckListPeriodRepository'
+import IEquipmentRepository from '../../../repositories/IEquipmentRepository'
 import CustomError from '@/config/CustomError'
 
 export default class PostSyncCheckListUseCase implements IUseCase {

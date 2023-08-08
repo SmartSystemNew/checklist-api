@@ -1,6 +1,6 @@
-import IUseCase from '@/models/IUseCase'
+import IUseCase from '../../../models/IUseCase'
 import IGetInfoRequestDTO from './IGetInfoRequestDTO'
-import IProductionRegisterRepository from '@/repositories/IProductionRegisterRepository'
+import IProductionRegisterRepository from '../../../repositories/IProductionRegisterRepository'
 import dayjs from 'dayjs'
 import IGetInfoResponseDTO from './IGetInfoResponseDTO'
 

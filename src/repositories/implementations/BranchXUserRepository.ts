@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import IBranchXUserRepository from '../IBranchXUserRepository'
-import { IListBoundBranch } from '@/models/IBranchXUser'
+import { IListBoundBranch } from '../../models/IBranchXUser'
 
 export default class BranchXUserRepository implements IBranchXUserRepository {
   private table = prisma.sofman_filiais_x_usuarios
